@@ -19,8 +19,14 @@
              </li>
              <li class="nav-item">
                  <a class="nav-link  " href="{{ route('categori') }}">
-                     <i data-feather="home" class="w-4 h-4 mr-2"></i>
+                     <i data-lucide="square-stack" class="w-4 h-4 mr-2"></i>
                      Category
+                 </a>
+             </li>
+             <li class="nav-item">
+                 <a class="nav-link  " href="{{ route('warehouse') }}">
+                     <i data-lucide="warehouse" class="w-4 h-4 mr-2"></i>
+                     Warehouse
                  </a>
              </li>
              <!-- nav item -->

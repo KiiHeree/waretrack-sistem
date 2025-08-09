@@ -1,4 +1,4 @@
-@section('Dashboard')
+@section('title', 'Dashboard')
 <div>
     <div class="bg-indigo-600 px-8 pt-10 lg:pt-14 pb-16 flex justify-between items-center mb-3">
         <!-- title -->

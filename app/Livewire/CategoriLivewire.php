@@ -8,7 +8,7 @@ use Livewire\Component;
 class CategoriLivewire extends Component
 {
     public $categories, $mode = "create", $showModal = false;
-    public $name, $description,$category_id;
+    public $name, $description, $category_id;
 
     public function mount()
     {
@@ -29,6 +29,7 @@ class CategoriLivewire extends Component
     public function openModal($mode, $id = null)
     {
         $this->showModal = true;
+        $this->mode = $mode;
         if ($mode == 'create') {
             $this->resetForm();
         } elseif ($mode == 'edit' || $mode == 'show' && $id) {
@@ -45,9 +46,11 @@ class CategoriLivewire extends Component
     {
         $this->showModal = false;
         $this->resetForm();
+        $this->dispatch('reinitComponents');
     }
 
-    public function store() {
+    public function store()
+    {
         $this->validate([
             'name' => 'required',
             'description' => 'required'
@@ -58,17 +61,17 @@ class CategoriLivewire extends Component
             'description' => $this->description
         ]);
 
-        if($store) {
-            session()->flash('success','Berhasil menambah data category');
+        if ($store) {
+            session()->flash('success', 'Berhasil menambah data category');
             $this->closeModal();
             $this->getCategori();
-        }else{
-            session()->flash('error','Gagal menambah data category');
+        } else {
+            session()->flash('error', 'Gagal menambah data category');
         }
-
     }
 
-    public function update() {
+    public function update()
+    {
         $this->validate([
             'name' => 'required',
             'description' => 'required'
@@ -80,26 +83,27 @@ class CategoriLivewire extends Component
             'description' => $this->description
         ]);
 
-        if($update) {
-            session()->flash('success','Berhasil mengubah data category');
+        if ($update) {
+            session()->flash('success', 'Berhasil mengubah data category');
             $this->closeModal();
             $this->getCategori();
-        }else{
-            session()->flash('error','Gagal mengubah data category');
+        } else {
+            session()->flash('error', 'Gagal mengubah data category');
         }
-
     }
 
-    public function delete($id) {
+    public function delete($id)
+    {
         $delete = Category::findOrFail($id);
         $delete->delete();
 
-         if($delete) {
-            session()->flash('success','Berhasil menghapus data category');
+        if ($delete) {
+            session()->flash('success', 'Berhasil menghapus data category');
             $this->closeModal();
+            $this->dispatch('reinitComponents');
             $this->getCategori();
-        }else{
-            session()->flash('error','Gagal menghapus data category');
+        } else {
+            session()->flash('error', 'Gagal menghapus data category');
         }
     }
 

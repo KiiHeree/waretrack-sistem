@@ -63,6 +63,19 @@
     <script src="/dist/assets/js/theme.min.js"></script>
 
     <script src="https://cdn.jsdelivr.net/npm/flowbite@3.1.2/dist/flowbite.min.js"></script>
+    <script src="https://unpkg.com/lucide@latest"></script>
+
+    <script>
+        lucide.createIcons();
+        document.addEventListener('livewire:init', () => {
+            Livewire.on('reinitComponents', () => {
+                // inisialisasi ulang setelah update DOM
+                setTimeout(() => {
+                    lucide.createIcons();
+                }, 100);
+            });
+        });
+    </script>
 
 </body>
 
