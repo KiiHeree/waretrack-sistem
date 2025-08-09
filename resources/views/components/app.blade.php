@@ -22,7 +22,9 @@
 
     <link rel="stylesheet" href="/dist/assets/libs/apexcharts/dist/apexcharts.css" />
 
-    <title>Dash UI - TailwindCSS HTML Admin Template Free</title>
+    <link href="https://cdn.jsdelivr.net/npm/flowbite@3.1.2/dist/flowbite.min.css" rel="stylesheet" />
+
+    <title>WareTrack - @yield('title')</title>
 </head>
 
 <body>
@@ -59,6 +61,8 @@
 
     <!-- Theme JS -->
     <script src="/dist/assets/js/theme.min.js"></script>
+
+    <script src="https://cdn.jsdelivr.net/npm/flowbite@3.1.2/dist/flowbite.min.js"></script>
 
 </body>
 

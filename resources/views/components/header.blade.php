@@ -18,7 +18,7 @@
          </div>
          <!-- navbar nav -->
          <ul class="flex ml-auto items-center">
-             <li class="dropdown stopevent mr-2">
+             {{-- <li class="dropdown stopevent mr-2">
                  <a class="text-gray-600" href="#" role="button" id="dropdownNotification"
                      data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                      <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
@@ -85,7 +85,7 @@
                          </div>
                      </div>
                  </div>
-             </li>
+             </li> --}}
              <!-- list -->
              <li class="dropdown ml-2">
                  <a class="rounded-full" href="#" role="button" id="dropdownUser" data-bs-toggle="dropdown"
@@ -100,8 +100,8 @@
                  <div class="dropdown-menu dropdown-menu-end p-2" aria-labelledby="dropdownUser">
                      <div class="px-4 pb-0 pt-2">
                          <div class="leading-4">
-                             <h5 class="mb-1">John E. Grainger</h5>
-                             <a href="#">View my profile</a>
+                             <h5 class="mb-1">{{ Auth::user()->name }}</h5>
+                             <a href="#">{{ AUth::user()->role }}</a>
                          </div>
                          <div class="border-b mt-3 mb-2"></div>
                      </div>
@@ -109,21 +109,8 @@
                      <ul class="list-unstyled">
                          <li>
                              <a class="dropdown-item" href="#">
-                                 <i class="w-4 h-4" data-feather="user"></i>
-                                 Edit Profile
-                             </a>
-                         </li>
-                         <li>
-                             <a class="dropdown-item" href="#">
                                  <i class="w-4 h-4" data-feather="activity"></i>
                                  Activity Log
-                             </a>
-                         </li>
-
-                         <li>
-                             <a class="dropdown-item" href="#">
-                                 <i class="w-4 h-4" data-feather="star"></i>
-                                 Go Pro
                              </a>
                          </li>
                          <li>
@@ -133,7 +120,7 @@
                              </a>
                          </li>
                          <li>
-                             <a class="dropdown-item" href="/dist/index.html">
+                             <a class="dropdown-item" href="{{ route('logout') }}">
                                  <i class="w-4 h-4" data-feather="power"></i>
                                  Sign Out
                              </a>

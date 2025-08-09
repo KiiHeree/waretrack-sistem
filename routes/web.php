@@ -1,5 +1,8 @@
 <?php
 
+use App\Http\Controllers\AuthController;
+use App\Livewire\AuthLivewire;
+use App\Livewire\CategoriLivewire;
 use App\Livewire\DashboardLivewire;
 use Illuminate\Support\Facades\Route;
 
@@ -14,4 +17,9 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', DashboardLivewire::class)->name('dashborad');
+Route::get('/login-waretrack', [AuthController::class, 'index'])->name('login')->middleware('guest');
+Route::post('/auth-waretrack', [AuthController::class, 'authenticate'])->name('authenticate')->middleware('guest');
+Route::get('/logout-waretrack', [AuthController::class, 'logout'])->name('logout')->middleware('auth');
+
+Route::get('/', DashboardLivewire::class)->name('dashboard')->middleware('auth');
+Route::get('/category', CategoriLivewire::class)->name('categori')->middleware('auth');

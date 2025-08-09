@@ -1,3 +1,4 @@
+@section('Dashboard')
 <div>
     <div class="bg-indigo-600 px-8 pt-10 lg:pt-14 pb-16 flex justify-between items-center mb-3">
         <!-- title -->
@@ -10,7 +11,7 @@
             <div class="card-body">
                 <!-- content -->
                 <div class="flex justify-between items-center">
-                    <h4>Projects</h4>
+                    <h4>Warehouse</h4>
                     <div
                         class="bg-indigo-600 bg-opacity-10 rounded-md w-10 h-10 flex items-center justify-center text-center text-indigo-600">
                         <i data-feather="briefcase"></i>
@@ -31,7 +32,7 @@
             <div class="card-body">
                 <!-- content -->
                 <div class="flex justify-between items-center">
-                    <h4>Active Task</h4>
+                    <h4>Active Delivery</h4>
                     <div
                         class="bg-indigo-600 bg-opacity-10 rounded-md w-10 h-10 flex items-center justify-center text-center text-indigo-600">
                         <i data-feather="list"></i>
@@ -52,7 +53,7 @@
             <div class="card-body">
                 <!-- content -->
                 <div class="flex justify-between items-center">
-                    <h4>Teams</h4>
+                    <h4>Driver Active</h4>
                     <div
                         class="bg-indigo-600 bg-opacity-10 rounded-md w-10 h-10 flex items-center justify-center text-center text-indigo-600">
                         <i data-feather="users"></i>
@@ -73,7 +74,7 @@
             <div class="card-body">
                 <!-- content -->
                 <div class="flex justify-between items-center">
-                    <h4>Productivity</h4>
+                    <h4>Items</h4>
                     <div
                         class="bg-indigo-600 bg-opacity-10 rounded-md w-10 h-10 flex items-center justify-center text-center text-indigo-600">
                         <i data-feather="target"></i>

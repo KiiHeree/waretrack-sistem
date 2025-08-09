@@ -11,14 +11,12 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('users', function (Blueprint $table) {
+        Schema::create('qr_codes', function (Blueprint $table) {
             $table->id();
-            $table->string('name');
-            $table->string('email')->unique();
-            $table->enum('role', ['admin', 'supervisor', 'staff', 'driver']);
-            $table->string('phone')->nullable();
-            $table->string('password');
-            $table->rememberToken();
+            $table->string('reference_type'); // e.g. "delivery_order", "item"
+            $table->unsignedBigInteger('reference_id');
+            $table->string('code_value')->unique();
+            $table->timestamp('expires_at')->nullable();
             $table->timestamps();
         });
     }
@@ -28,6 +26,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('users');
+        Schema::dropIfExists('qr_codes');
     }
 };

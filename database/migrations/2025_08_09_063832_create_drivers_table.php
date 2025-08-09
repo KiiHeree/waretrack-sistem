@@ -11,14 +11,12 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('users', function (Blueprint $table) {
+        Schema::create('drivers', function (Blueprint $table) {
             $table->id();
-            $table->string('name');
-            $table->string('email')->unique();
-            $table->enum('role', ['admin', 'supervisor', 'staff', 'driver']);
+            $table->foreignId('user_id')->constrained()->onDelete('cascade');
+            $table->string('license_no')->nullable();
+            $table->string('vehicle_info')->nullable();
             $table->string('phone')->nullable();
-            $table->string('password');
-            $table->rememberToken();
             $table->timestamps();
         });
     }
@@ -28,6 +26,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('users');
+        Schema::dropIfExists('drivers');
     }
 };

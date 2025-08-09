@@ -21,6 +21,8 @@ class User extends Authenticatable
         'name',
         'email',
         'password',
+        'role',
+        'phone'
     ];
 
     /**
@@ -42,4 +44,25 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
         'password' => 'hashed',
     ];
+
+    public function driver()
+    {
+        return $this->hasOne(Driver::class);
+    }
+    public function createdDeliveryOrders()
+    {
+        return $this->hasMany(DeliveryOrder::class, 'created_by');
+    }
+    public function approvedDeliveryOrders()
+    {
+        return $this->hasMany(DeliveryOrder::class, 'approved_by');
+    }
+    public function assignedDeliveries()
+    {
+        return $this->hasMany(DeliveryOrder::class, 'assigned_driver_id');
+    }
+    public function stockTransactions()
+    {
+        return $this->hasMany(StockTransaction::class);
+    }
 }
