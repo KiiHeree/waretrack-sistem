@@ -29,6 +29,12 @@
                      Warehouse
                  </a>
              </li>
+             <li class="nav-item">
+                 <a class="nav-link  " href="{{ route('staff') }}">
+                     <i data-lucide="user" class="w-4 h-4 mr-2"></i>
+                     Staff
+                 </a>
+             </li>
              <!-- nav item -->
              {{-- <li class="nav-item">
                  <a class="nav-link  collapsed " href="#!" data-bs-toggle="collapse" data-bs-target="#navPages"

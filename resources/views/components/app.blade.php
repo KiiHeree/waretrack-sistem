@@ -23,6 +23,9 @@
     <link rel="stylesheet" href="/dist/assets/libs/apexcharts/dist/apexcharts.css" />
 
     <link href="https://cdn.jsdelivr.net/npm/flowbite@3.1.2/dist/flowbite.min.css" rel="stylesheet" />
+    <!-- DataTables CSS -->
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.13.6/css/jquery.dataTables.min.css">
+
 
     <title>WareTrack - @yield('title')</title>
 </head>
@@ -52,6 +55,9 @@
         <!-- end of project -->
     </main>
 
+    <!-- jQuery (wajib) -->
+    <script src="https://code.jquery.com/jquery-3.7.0.min.js"></script>
+
     <script src="/dist/assets/libs/apexcharts/dist/apexcharts.min.js"></script>
 
     <!-- Libs JS -->
@@ -65,17 +71,39 @@
     <script src="https://cdn.jsdelivr.net/npm/flowbite@3.1.2/dist/flowbite.min.js"></script>
     <script src="https://unpkg.com/lucide@latest"></script>
 
+
+    <!-- DataTables core -->
+    <script src="https://cdn.datatables.net/1.13.6/js/jquery.dataTables.min.js"></script>
+
     <script>
-        lucide.createIcons();
-        document.addEventListener('livewire:init', () => {
+        $(document).ready(function() {
+            lucide.createIcons();
+            $('#table').DataTable();
+
+            
+                
             Livewire.on('reinitComponents', () => {
                 // inisialisasi ulang setelah update DOM
                 setTimeout(() => {
                     lucide.createIcons();
                 }, 100);
             });
+
+            Livewire.on('reinitDataTable', () => {
+                // destroy datatable kalo udah di-init sebelumnya
+                // if ($.fn.DataTable.isDataTable('#table')) {
+                //     $('#table').DataTable().destroy();
+                // }
+
+                // inisialisasi ulang setelah update DOM
+                setTimeout(() => {
+                    $('#table').DataTable();
+                }, 100);
+            });
         });
     </script>
+
+    @stack('js')
 
 </body>
 

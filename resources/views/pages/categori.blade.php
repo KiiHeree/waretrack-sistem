@@ -1,6 +1,28 @@
 @section('title', 'Category')
 
 <div>
+    @if (Session::has('success'))
+        <div aria-live="assertive" aria-atomic="true"
+            class="toast fade show border border-green-300 flex flex-col absolute top-5 right-5 w-full max-w-xs text-green-500 bg-white rounded-lg "
+            role="alert">
+            <div class="flex items-center w-full border-b border-green-300 p-3">
+                <h4 class="text-green-500">Success</h4>
+                <button type="button"
+                    class="btn-close ms-auto -mx-1.5 -my-1.5 bg-white text-gray-400 hover:text-gray-900 rounded-lg focus:ring-2 focus:ring-gray-300 p-1.5 hover:bg-gray-100 inline-flex items-center justify-center h-8 w-8 "
+                    data-bs-dismiss="toast" aria-label="Close">
+                    <span class="sr-only">Close</span>
+                    <svg class="w-3 h-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none"
+                        viewBox="0 0 14 14">
+                        <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                            d="m1 1 6 6m0 0 6 6M7 7l6-6M7 7l-6 6" />
+                    </svg>
+                </button>
+            </div>
+            <div class="p-3">
+                <p>{{ Session::get('success') }}</p>
+            </div>
+        </div>
+    @endif
     <div class="bg-indigo-600 px-8 pt-10 lg:pt-14 pb-16 flex justify-between items-center mb-3">
         <!-- title -->
         <h1 class="text-xl text-white">WareTrack - Category</h1>
@@ -15,22 +37,22 @@
                 Create
             </button>
             <div class="relative overflow-x-auto">
-                <table class="text-left w-full whitespace-nowrap">
+                <table class="text-left whitespace-nowrap border border-gray-300" id="table">
                     <thead class="bg-gray-200 text-gray-700 ">
                         <tr class="border-gray-300 border-b ">
-                            <th scope="col" class="px-6 py-3">#</th>
-                            <th scope="col" class="px-6 py-3">Name</th>
-                            <th scope="col" class="px-6 py-3">Description</th>
-                            <th scope="col" class="px-6 py-3">Action</th>
+                            <th scope="col">#</th>
+                            <th scope="col">Name</th>
+                            <th scope="col">Description</th>
+                            <th scope="col">Action</th>
                         </tr>
                     </thead>
                     <tbody class="divide-y ">
                         @foreach ($categories as $data)
-                            <tr class="border-gray-300 border-b ">
-                                <td class="py-3 px-6 text-left">{{ $loop->iteration }}</td>
-                                <td class="py-3 px-6 text-left">{{ $data->name }}</td>
-                                <td class="py-3 px-6 text-left">{{ $data->description }}</td>
-                                <td class="py-3 px-6 text-left">
+                            <tr>
+                                <td class="text-left">{{ $loop->iteration }}</td>
+                                <td class="text-left">{{ $data->name }}</td>
+                                <td class="text-left">{{ $data->description }}</td>
+                                <td class="text-left">
                                     <button type="button" wire:click="openModal('edit',{{ $data->id }})"
                                         class="btn gap-x-z bg-yellow-600 border-yellow-600 text-white disabled:opacity-50 disabled:pointer-events-none hover:bg-yellow-800 hover:border-yellow-800 active:bg-yellow-800 active:border-yellow-800 focus:outline-none focus:ring-4 focus:ring-yellow-300">
                                         <i data-lucide="pencil" class="w-4"></i>
@@ -108,3 +130,4 @@
         </div>
     @endif
 </div>
+

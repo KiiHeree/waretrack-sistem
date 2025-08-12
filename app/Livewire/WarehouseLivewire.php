@@ -30,6 +30,7 @@ class WarehouseLivewire extends Component
 
     public function openModal($mode, $id = null)
     {
+        $this->mode = $mode;
         $this->showModal = true;
         if ($mode == 'create') {
             $this->resetForm();
@@ -50,6 +51,7 @@ class WarehouseLivewire extends Component
         $this->showModal = false;
         $this->resetForm();
         $this->dispatch('reinitComponents');
+        $this->dispatch('reinitDataTable');
     }
 
     public function store()
@@ -95,9 +97,9 @@ class WarehouseLivewire extends Component
         ]);
 
         if ($update) {
-            session()->flash('success', 'Berhasil mengubah data warehouse');
             $this->closeModal();
             $this->getWarehouse();
+            session()->flash('success', 'Berhasil mengubah data warehouse');
         } else {
             session()->flash('error', 'Gagal mengubah data warehouse');
         }

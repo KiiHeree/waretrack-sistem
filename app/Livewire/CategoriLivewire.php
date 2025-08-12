@@ -47,6 +47,7 @@ class CategoriLivewire extends Component
         $this->showModal = false;
         $this->resetForm();
         $this->dispatch('reinitComponents');
+        $this->dispatch('reinitDataTable');
     }
 
     public function store()

@@ -3,6 +3,7 @@
 use App\Http\Controllers\AuthController;
 use App\Livewire\CategoriLivewire;
 use App\Livewire\DashboardLivewire;
+use App\Livewire\StaffLivewire;
 use App\Livewire\WarehouseLivewire;
 use Illuminate\Support\Facades\Route;
 
@@ -24,3 +25,4 @@ Route::get('/logout-waretrack', [AuthController::class, 'logout'])->name('logout
 Route::get('/', DashboardLivewire::class)->name('dashboard')->middleware('auth');
 Route::get('/category', CategoriLivewire::class)->name('categori')->middleware('auth');
 Route::get('/warehouse', WarehouseLivewire::class)->name('warehouse')->middleware('auth');
+Route::get('/staff', StaffLivewire::class)->name('staff')->middleware('auth');
