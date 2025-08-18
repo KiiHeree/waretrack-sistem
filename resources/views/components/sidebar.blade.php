@@ -19,13 +19,15 @@
                  <div class="navbar-heading">Pages</div>
              </li>
              <li class="nav-item">
-                 <a class="nav-link {{ request()->routeIs('categori') ? 'active' : '' }} " href="{{ route('categori') }}">
+                 <a class="nav-link {{ request()->routeIs('categori') ? 'active' : '' }} "
+                     href="{{ route('categori') }}">
                      <i data-lucide="square-stack" class="w-4 h-4 mr-2"></i>
                      Category
                  </a>
              </li>
              <li class="nav-item">
-                 <a class="nav-link {{ request()->routeIs('warehouse') ? 'active' : '' }} " href="{{ route('warehouse') }}">
+                 <a class="nav-link {{ request()->routeIs('warehouse') ? 'active' : '' }} "
+                     href="{{ route('warehouse') }}">
                      <i data-lucide="warehouse" class="w-4 h-4 mr-2"></i>
                      Warehouse
                  </a>
@@ -40,6 +42,15 @@
                  <a class="nav-link {{ request()->routeIs('item') ? 'active' : '' }} " href="{{ route('item') }}">
                      <i data-lucide="boxes" class="w-4 h-4 mr-2"></i>
                      Item
+                 </a>
+             </li>
+             <li class="nav-item">
+                 <div class="navbar-heading">Tx</div>
+             </li>
+             <li class="nav-item">
+                 <a class="nav-link {{ request()->routeIs('order') ? 'active' : '' }} " href="{{ route('order') }}">
+                     <i data-lucide="mailbox" class="w-4 h-4 mr-2"></i>
+                     Delivered Orders
                  </a>
              </li>
              <!-- nav item -->

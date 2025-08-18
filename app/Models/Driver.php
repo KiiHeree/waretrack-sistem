@@ -15,6 +15,6 @@ class Driver extends Model
     }
     public function deliveries()
     {
-        return $this->hasMany(DeliveryOrder::class, 'assigned_driver_id');
+        return $this->hasOne(DeliveryOrder::class, 'assigned_driver_id');
     }
 }

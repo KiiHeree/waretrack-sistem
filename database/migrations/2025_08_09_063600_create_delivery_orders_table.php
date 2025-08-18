@@ -22,7 +22,7 @@ return new class extends Migration
             $table->foreignId('assigned_driver_id')->nullable()->constrained('users')->onDelete('set null');
             $table->foreignId('created_by')->constrained('users')->onDelete('cascade');
             $table->foreignId('approved_by')->nullable()->constrained('users')->onDelete('set null');
-            $table->integer('total_items')->default(0);
+            $table->integer('total_items')->default(0); 
             $table->timestamps();
         });
     }

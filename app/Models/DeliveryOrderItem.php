@@ -9,6 +9,7 @@ class DeliveryOrderItem extends Model
 {
     use HasFactory;
     protected $fillable = ['delivery_order_id', 'item_id', 'qty'];
+    
     public function deliveryOrder()
     {
         return $this->belongsTo(DeliveryOrder::class);
