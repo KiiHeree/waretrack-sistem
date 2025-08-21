@@ -61,7 +61,7 @@
                                         class="btn gap-x-z bg-yellow-600 border-yellow-600 text-white disabled:opacity-50 disabled:pointer-events-none hover:bg-yellow-800 hover:border-yellow-800 active:bg-yellow-800 active:border-yellow-800 focus:outline-none focus:ring-4 focus:ring-yellow-300">
                                         <i data-lucide="pencil" class="w-4"></i>
                                     </button>
-                                    @if ($data->role == 'driver')
+                                    @if ($data->role == 'driver' || $data->role == 'staff')
                                         <button type="button" wire:click="openModal('show',{{ $data->id }})"
                                             class="btn gap-x-z bg-blue-600 border-blue-600 text-white disabled:opacity-50 disabled:pointer-events-none hover:bg-blue-800 hover:border-blue-800 active:bg-blue-800 active:border-blue-800 focus:outline-none focus:ring-4 focus:ring-blue-300">
                                             <i data-lucide="eye" class="w-4"></i>
@@ -142,7 +142,7 @@
                             <div class="col-span-2">
                                 <label for="phone"
                                     class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Role</label>
-                                <select wire:model="role" id="roleSelect" {{$mode == 'show' ? 'disabled' : ''}}
+                                <select wire:model="role" id="roleSelect" {{ $mode == 'show' ? 'disabled' : '' }}
                                     class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500">
                                     <option value="">Pilih Role</option>
                                     <option value="admin">Admin</option>
@@ -152,12 +152,13 @@
                                 </select>
                             </div>
                         </div>
+                        {{-- Driver wrapper --}}
                         <div id="driverWrapper" style="display: none" class="flex mb-4">
                             <div class="col-span-2">
                                 <label for="licence_no"
                                     class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Licence
                                     No</label>
-                                <input type="number" wire:model="licence_no" id="licence_no"
+                                <input type="number" wire:model="license_no" id="licence_no"
                                     {{ $mode == 'show' ? 'disabled' : '' }}
                                     class="mb-4 bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"
                                     placeholder="...">
@@ -170,6 +171,20 @@
                                     {{ $mode == 'show' ? 'disabled' : '' }}
                                     class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"
                                     placeholder="...">
+                            </div>
+                        </div>
+                        {{-- Warehouse wrapper --}}
+                        <div id="warehouseWrapper" style="display: none" class="flex mb-4">
+                            <div class="col-span-2">
+                                <label for=""
+                                    class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Warehouse</label>
+                                <select wire:model="warehouse_id" {{ $mode == 'show' ? 'disabled' : '' }}
+                                    class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500">
+                                    <option value="">Pilih Warehouse</option>
+                                    @foreach ($warehouses as $item)
+                                        <option value="{{ $item->id }}">{{ $item->name }}</option>
+                                    @endforeach
+                                </select>
                             </div>
                         </div>
                         @if ($mode != 'show')
@@ -192,10 +207,13 @@
                 setTimeout(() => {
                     const roleSelect = document.getElementById('roleSelect');
                     const driverWrapper = document.getElementById('driverWrapper');
+                    const warehouseWrapper = document.getElementById('warehouseWrapper');
 
-                    // langsung deteksi awal kalau defaultnya proses
+                    // langsung deteksi awal 
                     if (roleSelect.value === 'driver') {
                         driverWrapper.style.display = 'block';
+                    } else if (roleSelect.value === 'staff') {
+                        warehouseWrapper.style.display = 'block'
                     } else {
                         driverWrapper.style.display = 'none';
                     }
@@ -204,6 +222,8 @@
                     roleSelect.addEventListener('change', function() {
                         if (this.value === 'driver') {
                             driverWrapper.style.display = 'block';
+                        } else if (this.value === 'staff') {
+                            warehouseWrapper.style.display = 'block'
                         } else {
                             driverWrapper.style.display = 'none';
                         }

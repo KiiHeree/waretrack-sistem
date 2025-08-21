@@ -49,6 +49,10 @@ class User extends Authenticatable
     {
         return $this->hasOne(Driver::class);
     }
+    public function staff()
+    {
+        return $this->hasOne(Staff::class);
+    }
     public function createdDeliveryOrders()
     {
         return $this->hasMany(DeliveryOrder::class, 'created_by');

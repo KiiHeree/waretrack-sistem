@@ -4,12 +4,13 @@ namespace App\Livewire;
 
 use App\Models\DeliveryOrder;
 use App\Models\Driver;
+use App\Models\User;
 use Illuminate\Support\Facades\Auth;
 use Livewire\Component;
 
 class OrderLivewire extends Component
 {
-    public $orders, $showModal = false,$drivers;
+    public $orders, $showModal = false, $drivers;
     public $status, $driver_id, $order_id;
 
     public function mount()
@@ -20,7 +21,7 @@ class OrderLivewire extends Component
     public function getOrder()
     {
         $this->orders = DeliveryOrder::all();
-        $this->drivers = Driver::all();
+        $this->drivers = User::where('role', 'driver')->get();
     }
 
     public function openModal($id)
@@ -35,6 +36,9 @@ class OrderLivewire extends Component
     {
         $this->showModal = false;
         $this->status = '';
+        $this->getOrder();
+        $this->dispatch('reinitComponents');
+        $this->dispatch('reinitDataTable');
     }
 
     public function updateStatus()
@@ -58,11 +62,25 @@ class OrderLivewire extends Component
 
         if ($update_status) {
             session()->flash('success', 'Berhasil mengubah status menjadi ' . $this->status);
-        }else{
+            $this->closeModal();
+        } else {
             session()->flash('error', 'Gagal mengubah status menjadi ' . $this->status);
+            $this->closeModal();
         }
     }
 
+    public function delete($id) {
+        $delete = DeliveryOrder::findOrFail($id);
+        $delete->delete();
+
+        if ($delete) {
+            session()->flash('success', 'Berhasil menghapus data order');
+            $this->closeModal();
+        } else {
+            session()->flash('error', 'Gagal menghapus data order');
+            $this->closeModal();
+        }
+    }
 
     public function render()
     {

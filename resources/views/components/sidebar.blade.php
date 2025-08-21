@@ -2,7 +2,7 @@
      <div id="myScrollableElement" class="h-screen" data-simplebar>
          <!-- brand logo -->
          <a class="navbar-brand" href="/">
-             <img src="/dist/assets/images/brand/logo/logo.svg" alt="" />
+             <h2 class="text-xl font-bold text-white">WareTrack</h2>
          </a>
 
          <!-- navbar nav -->
@@ -33,15 +33,15 @@
                  </a>
              </li>
              <li class="nav-item">
-                 <a class="nav-link {{ request()->routeIs('staff') ? 'active' : '' }} " href="{{ route('staff') }}">
-                     <i data-lucide="user" class="w-4 h-4 mr-2"></i>
-                     Staff
-                 </a>
-             </li>
-             <li class="nav-item">
                  <a class="nav-link {{ request()->routeIs('item') ? 'active' : '' }} " href="{{ route('item') }}">
                      <i data-lucide="boxes" class="w-4 h-4 mr-2"></i>
                      Item
+                 </a>
+             </li>
+             <li class="nav-item">
+                 <a class="nav-link {{ request()->routeIs('staff') ? 'active' : '' }} " href="{{ route('staff') }}">
+                     <i data-lucide="user" class="w-4 h-4 mr-2"></i>
+                     Staff
                  </a>
              </li>
              <li class="nav-item">
@@ -50,7 +50,7 @@
              <li class="nav-item">
                  <a class="nav-link {{ request()->routeIs('order') ? 'active' : '' }} " href="{{ route('order') }}">
                      <i data-lucide="mailbox" class="w-4 h-4 mr-2"></i>
-                     Delivered Orders
+                    Orders
                  </a>
              </li>
              <!-- nav item -->
