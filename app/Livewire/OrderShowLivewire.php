@@ -18,6 +18,6 @@ class OrderShowLivewire extends Component
 
     public function render()
     {
-        return view('pages.order_show')->layout('components.app');
+        return view('pages.order_detail')->layout('components.app');
     }
 }

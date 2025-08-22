@@ -9,6 +9,7 @@ use App\Livewire\OrderLivewire;
 use App\Livewire\OrderShowLivewire;
 use App\Livewire\StaffLivewire;
 use App\Livewire\StockTransactionLivewire;
+use App\Livewire\WarehouseDetailLivewire;
 use App\Livewire\WarehouseLivewire;
 use Illuminate\Support\Facades\Route;
 
@@ -30,6 +31,7 @@ Route::get('/logout-waretrack', [AuthController::class, 'logout'])->name('logout
 Route::get('/', DashboardLivewire::class)->name('dashboard')->middleware('auth');
 Route::get('/category', CategoriLivewire::class)->name('categori')->middleware('auth');
 Route::get('/warehouse', WarehouseLivewire::class)->name('warehouse')->middleware('auth');
+Route::get('/warehouse-detail/{id}', WarehouseDetailLivewire::class)->name('warehouse-detail')->middleware('auth');
 Route::get('/staff', StaffLivewire::class)->name('staff')->middleware('auth');
 Route::get('/item', ItemLivewire::class)->name('item')->middleware('auth');
 Route::get('/stock-transaction/{id}', StockTransactionLivewire::class)->name('stock-transaction')->middleware('auth');

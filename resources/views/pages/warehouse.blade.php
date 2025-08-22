@@ -62,10 +62,10 @@
                                         class="btn gap-x-z bg-yellow-600 border-yellow-600 text-white disabled:opacity-50 disabled:pointer-events-none hover:bg-yellow-800 hover:border-yellow-800 active:bg-yellow-800 active:border-yellow-800 focus:outline-none focus:ring-4 focus:ring-yellow-300">
                                         <i data-lucide="pencil" class="w-4"></i>
                                     </button>
-                                    <button type="button" wire:click="openModal('show',{{ $data->id }})"
+                                     <a href="{{ route('warehouse-detail', $data->id) }}"
                                         class="btn gap-x-z bg-blue-600 border-blue-600 text-white disabled:opacity-50 disabled:pointer-events-none hover:bg-blue-800 hover:border-blue-800 active:bg-blue-800 active:border-blue-800 focus:outline-none focus:ring-4 focus:ring-blue-300">
                                         <i data-lucide="eye" class="w-4"></i>
-                                    </button>
+                                    </a>
                                     <button type="button" wire:click="delete({{ $data->id }})"
                                         class="btn gap-x-z bg-red-600 border-red-600 text-white disabled:opacity-50 disabled:pointer-events-none hover:bg-red-800 hover:border-red-800 active:bg-red-800 active:border-red-800 focus:outline-none focus:ring-4 focus:ring-red-300">
                                         <i data-lucide="trash-2" class="w-4"></i>

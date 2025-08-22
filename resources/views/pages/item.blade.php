@@ -60,7 +60,7 @@
                                 <td class="text-left">{{ $data->description }}</td>
                                 <td class="text-left"><img src="/storage/{{ $data->image_path }}" width="50"
                                         height="auto" alt=""></td>
-                                <td class="text-left">{{ $data->stocks->quantity }}</td>
+                                <td class="text-left">{{ $data->stocks->quantity }} {{ $data->unit }}</td>
                                 <td class="text-left">
                                     <button type="button" wire:click="openModal('edit',{{ $data->id }})"
                                         class="btn gap-x-z bg-yellow-600 border-yellow-600 text-white disabled:opacity-50 disabled:pointer-events-none hover:bg-yellow-800 hover:border-yellow-800 active:bg-yellow-800 active:border-yellow-800 focus:outline-none focus:ring-4 focus:ring-yellow-300">
@@ -115,14 +115,13 @@
                             <label for="name"
                                 class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Name</label>
                             <input type="text" wire:model="name" id="name"
-                                {{ $mode == 'show' ? 'disabled' : '' }}
                                 class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"
                                 placeholder="...">
                         </div>
                         <div class="col-span-2">
                             <label for="phone"
                                 class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Category</label>
-                            <select wire:model="category_id" id="" {{ $mode == 'show' ? 'disabled' : '' }}
+                            <select wire:model="category_id" id=""
                                 class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500">
                                 <option value="">Pilih Category</option>
                                 @foreach ($categories as $item)
@@ -134,7 +133,6 @@
                             <label for="description"
                                 class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Description</label>
                             <input type="text" wire:model="description" id="description"
-                                {{ $mode == 'show' ? 'disabled' : '' }}
                                 class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"
                                 placeholder="...">
                         </div>
@@ -142,7 +140,6 @@
                             <label for="unit"
                                 class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Unit</label>
                             <input type="text" wire:model="unit" id="unit"
-                                {{ $mode == 'show' ? 'disabled' : '' }}
                                 class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"
                                 placeholder="...">
                         </div>
@@ -150,13 +147,12 @@
                             <label for=""
                                 class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Image</label>
                             <input type="file" wire:model.defer="image_path" wire:ignore
-                                {{ $mode == 'show' ? 'disabled' : '' }}
                                 class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500">
                         </div>
                         <div class="col-span-2">
                             <label for=""
                                 class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Warehouse</label>
-                            <select wire:model="warehouse_id" id="" {{ $mode == 'show' ? 'disabled' : '' }}
+                            <select wire:model="warehouse_id" id=""
                                 class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500">
                                 <option value="">Pilih Warehouse</option>
                                 @foreach ($warehouses as $item)
@@ -169,8 +165,7 @@
                                 class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Update
                                 Quantity
                                 Mode</label>
-                            <select wire:model="update_quantity_mode" {{ $mode == 'show' ? 'disabled' : '' }}
-                                id="selectMode"
+                            <select wire:model="update_quantity_mode" id="selectMode"
                                 class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500">
                                 <option value="">Pilih Update</option>
                                 <option value="tambah">Tambah</option>
@@ -183,7 +178,6 @@
                                 class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Update
                                 Quantity</label>
                             <input type="number" wire:model="update_quantity" id="update_quantity"
-                                {{ $mode == 'show' ? 'disabled' : '' }}
                                 class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"
                                 placeholder="...">
                         </div>
@@ -192,18 +186,16 @@
                             <div class="col-span-2">
                                 <label class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">
                                     Quantity</label>
-                                <input type="number" wire:model="quantity" {{ $mode == 'show' ? 'disabled' : '' }}
+                                <input type="number" wire:model="quantity"
                                     class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"
                                     placeholder="...">
                             </div>
                         @endif
                     </div>
-                    @if ($mode != 'show')
-                        <button type="submit" {{ $mode == 'show' ? 'disabled' : '' }}
-                            class="btn gap-x-2 mb-5 bg-indigo-600 text-white border-indigo-600 disabled:opacity-50 disabled:pointer-events-none hover:bg-indigo-800 hover:border-indigo-800 active:bg-indigo-800 active:border-indigo-800 focus:outline-none focus:ring-4 focus:ring-indigo-300">
-                            {{ $mode == 'create' ? 'Submit' : 'Update' }}
-                        </button>
-                    @endif
+                    <button type="submit"
+                        class="btn gap-x-2 mb-5 bg-indigo-600 text-white border-indigo-600 disabled:opacity-50 disabled:pointer-events-none hover:bg-indigo-800 hover:border-indigo-800 active:bg-indigo-800 active:border-indigo-800 focus:outline-none focus:ring-4 focus:ring-indigo-300">
+                        {{ $mode == 'create' ? 'Submit' : 'Update' }}
+                    </button>
                 </form>
 
 

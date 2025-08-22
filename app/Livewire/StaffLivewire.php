@@ -142,7 +142,7 @@ class StaffLivewire extends Component
             } elseif ($update->role == 'staff') {
                 $update_staff = Staff::where('user_id', $this->staff_id)->first();
                 
-                dd($this->staff_id);
+                // dd($this->staff_id);
                 $update_staff->update([
                     'warehouse_id' => $this->warehouse_id
                 ]);

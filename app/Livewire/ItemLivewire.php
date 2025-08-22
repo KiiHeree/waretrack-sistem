@@ -27,6 +27,14 @@ class ItemLivewire extends Component
     public function getItem()
     {
         $this->items = Item::all();
+
+        if (Auth::user()->role === 'staff') {
+            $this->items = Item::with('stocks')
+                ->whereHas('stocks', function ($q) {
+                    $q->where('warehouse_id', Auth::user()->staff->warehouse_id); 
+                })
+                ->get();
+        }
         $this->categories = Category::all();
         $this->warehouses = Warehouse::all();
     }
@@ -52,7 +60,7 @@ class ItemLivewire extends Component
         $this->mode = $mode;
         if ($mode == 'create') {
             $this->resetForm();
-        } elseif ($mode == 'edit' || $mode == 'show' && $id) {
+        } elseif ($mode == 'edit' && $id) {
             $this->dispatch('updateQuantity');
             $it = Item::findOrFail($id);
             $this->sku = $it->sku;
@@ -138,7 +146,7 @@ class ItemLivewire extends Component
         }
 
         if ($store != '' || $store != null && $store_stock != '' || $store_stock != null && $store_stok_tx != '' || $store_stok_tx != null) {
-            session()->flash('success', 'Berhasil menambah data category');
+            session()->flash('success', 'Berhasil menambah data Item');
             $this->closeModal();
             $this->getItem();
         } else {

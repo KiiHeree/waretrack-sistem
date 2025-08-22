@@ -109,7 +109,7 @@
                         </tbody>
                     </table>
                 </div>
-                <a href="{{ route('order') }}"
+                <a href="{{ url()->previous() }}"
                     class="btn gap-x-2 mb-5 bg-indigo-600 text-white border-indigo-600 disabled:opacity-50 disabled:pointer-events-none hover:bg-indigo-800 hover:border-indigo-800 active:bg-indigo-800 active:border-indigo-800 focus:outline-none focus:ring-4 focus:ring-indigo-300">
                     Back
                 </a>

@@ -41,7 +41,7 @@
              <li class="nav-item">
                  <a class="nav-link {{ request()->routeIs('staff') ? 'active' : '' }} " href="{{ route('staff') }}">
                      <i data-lucide="user" class="w-4 h-4 mr-2"></i>
-                     Staff
+                     User
                  </a>
              </li>
              <li class="nav-item">

@@ -34,7 +34,7 @@ class WarehouseLivewire extends Component
         $this->showModal = true;
         if ($mode == 'create') {
             $this->resetForm();
-        } elseif ($mode == 'edit' || $mode == 'show' && $id) {
+        } elseif ($mode == 'edit' && $id) {
             $war = Warehouse::findOrFail($id);
             $this->name = $war->name;
             $this->address = $war->address;
