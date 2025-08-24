@@ -69,7 +69,8 @@ class OrderLivewire extends Component
         }
     }
 
-    public function delete($id) {
+    public function delete($id)
+    {
         $delete = DeliveryOrder::findOrFail($id);
         $delete->delete();
 

@@ -22,6 +22,8 @@ class DashboardLivewire extends Component
             $q->whereNotIn('status', ['pending', 'cancelled', 'delivered']);
         })->count();
 
+        
+
 
         // dd($this->driver_active);
         $this->driver = Driver::count();

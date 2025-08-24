@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\QrCodeController;
 use App\Livewire\CategoriLivewire;
 use App\Livewire\DashboardLivewire;
 use App\Livewire\ItemLivewire;
@@ -38,3 +39,4 @@ Route::get('/stock-transaction/{id}', StockTransactionLivewire::class)->name('st
 Route::get('/order', OrderLivewire::class)->name('order')->middleware('auth');
 Route::get('/order-create', OrderCreateLivewire::class)->name('order-create')->middleware('auth');
 Route::get('/order-show/{id}', OrderShowLivewire::class)->name('order-show')->middleware('auth');
+Route::get('/qr-order-show/{id}', [QrCodeController::class, 'show'])->name('qr-show')->middleware('auth');

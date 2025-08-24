@@ -5,6 +5,8 @@ namespace App\Livewire;
 use App\Models\DeliveryOrder;
 use App\Models\DeliveryOrderItem;
 use App\Models\Item;
+use SimpleSoftwareIO\QrCode\Facades\QrCode;
+use App\Models\QrCode as ModelQrCode;
 use App\Models\Stock;
 use App\Models\StockTransaction;
 use App\Models\Warehouse;
@@ -36,6 +38,34 @@ class OrderCreateLivewire extends Component
     {
         unset($this->itemsForm[$index]);
         $this->itemsForm = array_values($this->itemsForm); // reindex array
+    }
+
+    public function generateQr($id)
+    {
+        $order = DeliveryOrder::findOrFail($id);
+
+        // URL tujuan kalo QR di-scan
+        $url = route('order-show', $order->id);
+
+        // Path simpan file
+        $fileName = "order-{$order->id}.svg";
+        $path = storage_path("app/public/qrcodes/{$fileName}");
+
+        // Bikin folder kalo belum ada
+        if (!file_exists(dirname($path))) {
+            mkdir(dirname($path), 0755, true);
+        }
+
+        // Generate QR jadi PNG + simpan
+        QrCode::format('svg')
+            ->size(300)
+            ->margin(2)
+            ->generate($url, $path);
+
+        // Simpen path ke database (opsional, kalo mau dipanggil lagi)
+        $store_qr = ModelQrCode::create([
+            'qr_path' => $fileName
+        ]);
     }
 
     public function store()
@@ -95,8 +125,8 @@ class OrderCreateLivewire extends Component
             }
 
             if ($create_order_item) {
+                $this->generateQr($create_order->id);
                 return redirect()->route('order')->with('success', 'Berhasil membuat order');
-                session()->flash('success', 'Berhasil membuat order');
             }
         } else {
             session()->flash('error', 'Gagal membuat order');
