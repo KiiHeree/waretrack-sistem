@@ -2,13 +2,17 @@
 
 namespace App\Livewire;
 
+use App\Exports\ReportExport;
 use App\Models\DeliveryOrder;
 use Carbon\Carbon;
 use Livewire\Component;
+use Maatwebsite\Excel\Facades\Excel; // 
+
 
 class ReportLivewire extends Component
 {
     public $start_date = '', $end_date = '';
+    public $btn_export = false;
     public $reports;
     public function mount()
     {
@@ -31,6 +35,7 @@ class ReportLivewire extends Component
                 ->get();
 
             $this->dispatch('reinitComponents');
+            $this->btn_export = true;
         } else {
             $this->reports = DeliveryOrder::with(['driver', 'items', 'warehouse'])
                 ->orderByRaw("CASE 
@@ -44,6 +49,18 @@ class ReportLivewire extends Component
 
             $this->dispatch('reinitComponents');
         }
+    }
+
+    public function export()
+    {
+        $filters = [
+            'start_date' => $this->start_date,
+            'end_date'   => $this->end_date,
+        ];
+
+        return Excel::download(new ReportExport($filters), 'report' . $this->start_date . '-' . $this->end_date . '.xlsx');
+        
+        $this->btn_export = false;
     }
 
     public function render()
