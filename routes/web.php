@@ -8,6 +8,7 @@ use App\Livewire\ItemLivewire;
 use App\Livewire\OrderCreateLivewire;
 use App\Livewire\OrderLivewire;
 use App\Livewire\OrderShowLivewire;
+use App\Livewire\ReportLivewire;
 use App\Livewire\StaffLivewire;
 use App\Livewire\StockTransactionLivewire;
 use App\Livewire\WarehouseDetailLivewire;
@@ -39,4 +40,5 @@ Route::get('/stock-transaction/{id}', StockTransactionLivewire::class)->name('st
 Route::get('/order', OrderLivewire::class)->name('order')->middleware('auth');
 Route::get('/order-create', OrderCreateLivewire::class)->name('order-create')->middleware('auth');
 Route::get('/order-show/{id}', OrderShowLivewire::class)->name('order-show')->middleware('auth');
+Route::get('/report-order', ReportLivewire::class)->name('report')->middleware('auth');
 Route::get('/qr-order-show/{id}', [QrCodeController::class, 'show'])->name('qr-show')->middleware('auth');

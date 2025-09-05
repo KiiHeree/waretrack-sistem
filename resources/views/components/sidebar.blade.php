@@ -53,6 +53,15 @@
                     Orders
                  </a>
              </li>
+             <li class="nav-item">
+                 <div class="navbar-heading">Report</div>
+             </li>
+             <li class="nav-item">
+                 <a class="nav-link {{ request()->routeIs('report') ? 'active' : '' }} " href="{{ route('report') }}">
+                     <i data-lucide="calendar" class="w-4 h-4 mr-2"></i>
+                    Report
+                 </a>
+             </li>
              <!-- nav item -->
              {{-- <li class="nav-item">
                  <a class="nav-link  collapsed " href="#!" data-bs-toggle="collapse" data-bs-target="#navPages"
